@@ -9,8 +9,10 @@ echo "\nInstalling nginx..."
 sudo apt-get install nginx
 echo "Nginx successfully started."
 
-echo "Installing Node.js..."
-wget http://node-arm.herokuapp.com/node_latest_armhf.deb
-sudo dpkg -i node_latest_armhf.deb
+echo "TODO: should modify or create an nginx file later"
+
+echo "Installing Node.js and npm..."
+curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
+sudo apt-get install -y nodejs
 
 echo "All done! Check any error messages along the way. See script/start.sh and script/stop.sh."

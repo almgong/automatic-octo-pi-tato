@@ -1,4 +1,8 @@
 #!/bin/bash
 
-echo "Starting nginx... (stop anytime with script/stop."
+echo "Starting nginx..."
 sudo service nginx start
+echo "Nginx OK."
+
+echo "Starting webserver..."
+npm start
