@@ -89,10 +89,16 @@ function create() {
         var star = stars.create(i * 70, 0, 'star');
 
         //  Let gravity do its thing
-        star.body.gravity.y = 6;
+        // star.body.gravity.y = 8;
 
         //  This just gives each star a slightly random bounce value
-        star.body.bounce.y = 0.7 + Math.random() * 0.2;
+        star.body.bounce.y = 1;
+        star.body.bounce.x = 1;
+        star.body.velocity.x = Math.random()*700;
+        star.body.velocity.y = Math.random()*700;
+
+        star.body.collideWorldBounds = true;
+
     }
 
     scoreText = game.add.text(16, 16, 'score: 0', { fontSize: '32px', fill: '#000' });
@@ -133,19 +139,23 @@ function update() {
     {
         player.body.velocity.y = -350;
     }
-    
+    game.physics.arcade.collide(stars, stars);
     game.physics.arcade.collide(stars, platforms);
     game.physics.arcade.overlap(player, stars, collectStar, null, this);
+
+    if(player.alive == true){
+    score += 1;
+    }
+    scoreText.text = 'Score: ' + score;
+
 }
 
 function collectStar (player, star) {
 
     // Removes the star from the screen
-    star.kill();
+    player.kill();
  
     //  Add and update the score
-    score += 10;
-    scoreText.text = 'Score: ' + score;
 
 }
 
